@@ -47,13 +47,20 @@ Most LLM APIs are **stateless**:
 pip install contextengine-ai
 ````
 
-### With MongoDB support
+### Optional extras
 
 ```bash
-pip install pymongo
+pip install contextengine-ai[mongo,env]
 ```
 
-(ContextEngine keeps database dependencies optional.)
+> **Note**
+> The PyPI package name is **`contextengine-ai`**, but the Python import remains:
+>
+> ```python
+> import contextengine
+> ```
+
+ContextEngine keeps all database and environment helpers **optional**.
 
 ---
 
@@ -156,6 +163,23 @@ ContextConfig(
 
 ---
 
+## 🌱 Optional `.env` Support
+
+ContextEngine does **not** require `.env`, but supports it as a convenience.
+
+```python
+from contextengine import load_env
+import os
+
+load_env()  # loads .env if present
+
+mongo_uri = os.getenv("MONGO_URI")
+```
+
+All configuration is still passed **explicitly**.
+
+---
+
 ## 🧪 Testing
 
 ```bash
@@ -181,7 +205,7 @@ ContextEngine intentionally does **NOT** include:
 * Prompt templates
 * LLM clients
 
-It is a **memory layer**, not an app framework.
+It is a **memory layer**, not an application framework.
 
 ---
 
@@ -195,6 +219,13 @@ It is a **memory layer**, not an app framework.
 
 ---
 
+## 📦 Project Links
+
+* 📦 PyPI: [https://pypi.org/project/contextengine-ai/](https://pypi.org/project/contextengine-ai/)
+* 🧠 GitHub: [https://github.com/Albimathew62/contextengine](https://github.com/Albimathew62/contextengine)
+
+---
+
 ## 📜 License
 
 MIT License
@@ -203,8 +234,6 @@ MIT License
 
 ## 👤 Author
 
-Built independently as an open-source infrastructure project.
+Built independently as an open-source infrastructure project by **Albi Mathew**.
 
-```
-
----
+````
