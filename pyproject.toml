@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "contextengine"
+version = "0.1.0"
+description = "A lightweight, vendor-agnostic context & memory engine for LLM applications"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+authors = [
+  { name = "Albi Mathew", email = "albi89427@gmail.com" }
+]
+
+dependencies = [
+  "sentence-transformers>=2.2.0"
+]
+
+[project.optional-dependencies]
+mongo = ["pymongo>=4.0"]
+env = ["python-dotenv>=1.0"]
+
+[project.urls]
+Homepage = "https://github.com/Albimathew62"
+Repository = "https://github.com/Albimathew62/contextengine"
+Issues = "https://github.com/Albimathew62/contextengine/issues"
