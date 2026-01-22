@@ -1,6 +1,3 @@
-## ✅ `README.md` (v0.1)
-
-````markdown
 # ContextEngine
 
 **ContextEngine** is a lightweight, vendor-agnostic, pip-installable **context & memory engine** for LLM applications.
