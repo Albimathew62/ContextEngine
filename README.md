@@ -44,7 +44,7 @@ Most LLM APIs are **stateless**:
 ### Core (no database dependency)
 
 ```bash
-pip install contextengine
+pip install contextengine-ai
 ````
 
 ### With MongoDB support
