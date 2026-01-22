@@ -1,24 +1,3 @@
-Perfect 👍
-That’s the **right order**: **Docs → Env → Publish**.
-
-Let’s do this cleanly and professionally.
-
----
-
-# 📘 STEP 1: Write the README (Docs)
-
-This README is what makes people *understand* and *trust* ContextEngine.
-
-Create a file at project root:
-
-```
-README.md
-```
-
-Now **copy–paste EVERYTHING below** into it.
-
----
-
 ## ✅ `README.md` (v0.1)
 
 ````markdown
