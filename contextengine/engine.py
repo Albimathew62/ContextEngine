@@ -8,14 +8,6 @@ from contextengine.config import ContextConfig
 
 class ContextEngine:
 
-    def _estimate_tokens(self, text: str) -> int:
-        if self.config.token_estimator == "words":
-            return len(text.split())
-        # default: chars (≈ tokens / 4 heuristic)
-        return max(1, len(text) // 4)
-
-    def _count_context_tokens(self, messages: list) -> int:
-        return sum(self._estimate_tokens(m["content"]) for m in messages)
     def __init__(
         self,
         store: MemoryStore,
@@ -25,6 +17,28 @@ class ContextEngine:
         self.store = store
         self.encoder = encoder
         self.config = config
+        self._tiktoken_estimator = None  # lazy-loaded on first use
+
+    # ---------------- TOKEN ESTIMATION ----------------
+
+    def _estimate_tokens(self, text: str) -> int:
+        estimator = self.config.token_estimator
+
+        if estimator == "tiktoken":
+            if self._tiktoken_estimator is None:
+                from contextengine.utils import TiktokenEstimator
+                model = getattr(self.config, "tiktoken_model", "gpt-4")
+                self._tiktoken_estimator = TiktokenEstimator(model=model)
+            return self._tiktoken_estimator.count(text)
+
+        if estimator == "words":
+            return len(text.split())
+
+        # default: chars heuristic
+        return max(1, len(text) // 4)
+
+    def _count_context_tokens(self, messages: list) -> int:
+        return sum(self._estimate_tokens(m["content"]) for m in messages)
 
     # ---------------- ADD MEMORY ----------------
 
@@ -89,9 +103,6 @@ class ContextEngine:
 
     # ---------------- RETRIEVE CONTEXT ----------------
 
-    import math
-    from typing import Optional, Dict, List
-
     def get_context(self, query: Optional[str] = None) -> List[Dict]:
         session_id = self.config.session_id
         max_units = self.config.max_context_units
@@ -139,7 +150,6 @@ class ContextEngine:
         ]
 
         while messages and self._count_context_tokens(messages) > self.config.max_tokens:
-            # remove oldest message first
             messages.pop(0)
 
         return messages

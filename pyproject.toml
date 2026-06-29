@@ -11,7 +11,8 @@ requires-python = ">=3.9"
 license = { text = "MIT" }
 
 authors = [
-  { name = "Albi Mathew", email = "albi89427@gmail.com" }
+  { name = "Albi Mathew", email = "albi89427@gmail.com" },
+  { name = "Muhammed Rishad C", email = "muhammed.risshad@gmail.com" }
 ]
 
 dependencies = [
@@ -21,6 +22,7 @@ dependencies = [
 [project.optional-dependencies]
 mongo = ["pymongo>=4.0"]
 env = ["python-dotenv>=1.0"]
+tiktoken = ["tiktoken>=0.5.0"]
 
 [project.urls]
 Homepage = "https://github.com/Albimathew62"
