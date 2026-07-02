@@ -1,11 +1,9 @@
-import math
 from typing import List
 
 from pymongo import MongoClient, ASCENDING
 
 from contextengine.models import ContextUnit
 from contextengine.memory.base import MemoryStore
-
 from contextengine.utils import cosine_similarity
 
 
