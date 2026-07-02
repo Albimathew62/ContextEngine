@@ -6,12 +6,7 @@ from pymongo import MongoClient, ASCENDING
 from contextengine.models import ContextUnit
 from contextengine.memory.base import MemoryStore
 
-
-def cosine_similarity(a: list, b: list) -> float:
-    dot = sum(x * y for x, y in zip(a, b))
-    norm_a = math.sqrt(sum(x * x for x in a))
-    norm_b = math.sqrt(sum(y * y for y in b))
-    return dot / (norm_a * norm_b + 1e-9)
+from contextengine.utils import cosine_similarity
 
 
 class MongoMemoryStore(MemoryStore):
